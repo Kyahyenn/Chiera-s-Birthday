@@ -1,0 +1,163 @@
+:root {
+  --primary: rgb(255, 255, 255);
+  --bg-color: rgb(255, 149, 193);
+  --bg-envelope-color: rgb(212, 185, 90);
+  --envelope-tab: rgb(240, 210, 110);
+  --envelope-cover: rgb(212, 190, 92);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --txt-color: #444;
+  --heart-color: rgb(253, 3, 212);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.container > .envelope-wrapper {
+  background: var(--bg-envelope-color);
+  box-shadow: 0 0 60px var(--shadow-color); /* Increased shadow size */
+}
+
+.envelope-wrapper > .envelope {
+  position: relative;
+  width: 450px; /* Increased width */
+  height: 345px; /* Increased height */
+}
+
+.envelope-wrapper > .envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border-top: 195px solid var(--envelope-tab); /* Adjusted dimensions */
+  border-right: 225px solid transparent;
+  border-left: 225px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope-wrapper > .envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0px;
+  height: 0px;
+  border-top: 195px solid transparent;
+  border-right: 225px solid var(--envelope-cover);
+  border-bottom: 150px solid var(--envelope-cover);
+  border-left: 225px solid var(--envelope-cover);
+}
+
+.envelope > .letter {
+  position: absolute;
+  right: 24%;
+  bottom: 0;
+  width: 45%; /* Adjusted width */
+  height: 82%; /* Adjusted height */
+  background: var(--primary);
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 7px var(--shadow-color); /* Slightly increased shadow */
+  padding: 30px 15px; /* Increased padding */
+}
+
+.envelope > .letter > .text {
+  font-family: 'Gill Sans', 'French Script', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+  color: var(--txt-color);
+  text-align: left;
+  font-size: 11px; /* Increased font size */
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px; /* Increased size */
+  height: 25px; /* Increased size */
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+}
+
+.heart:before, 
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 25px; /* Increased size */
+  height: 25px; /* Increased size */
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -12.5px; /* Adjusted position */
+}
+
+.heart:after {
+  right: 12.5px; /* Adjusted position */
+}
+
+.flap > .envelope:before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.flap > .envelope > .letter {
+  bottom: 150px; /* Adjusted position */
+  transform: scale(1.7); /* Slightly larger scaling */
+  transition-delay: 1s;
+}
+
+.flap > .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+.container > .envelope-wrapper > .developed-by {
+  position: absolute;
+  bottom: 40px;
+  left: 50%; 
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 14px; /* Increased font size */
+  font-weight: lighter;
+}
+
+.envelope-wrapper > .click-me {
+  position: absolute;
+  top: 70%; /* Adjusted position */
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--heart-color);
+  font-size: 24px; /* Increased font size */
+  font-weight: bold;
+  z-index: 3;
+}
+
+.heart:hover {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+.flap > .heart:hover {
+  transform: rotate(0deg);
+}
+body {
+  margin: 0;
+}
